@@ -1,4 +1,5 @@
-pull request: 
+pull request: https://github.com/zeravenyoej/node-api-challenge/pull/1
+
 # Sprint Challenge: Express and Node.js - Projects & Actions
 
 ## Description
@@ -41,13 +42,24 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+It is what allows us to write/use middleware with Node.js (described in the next answer).
+It also gives us access to .Router(), which allows us to avoid an overly complicated index.js file.
+
 - [ ] Describe Middleware?
+
+Middleware are an array of functions that provide a way to extend the features provided by frameworks, often by adding modularity. They are often used for logging and authentication.
 
 - [ ] Describe a Resource?
 
+A resource is anything that can be used in coding.
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+res.status(200)
+
 - [ ] How can we partition our application into sub-applications?
+
+With express routers. They make it more modular and easier to maintain.
 
 ## Minimum Viable Product
 
