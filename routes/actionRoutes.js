@@ -20,7 +20,12 @@ router.get('/:id', (req, res, next) => {
 //Create action
 router.post('/:id/post', (req, res, next) => {
     db.insert(req.body)
-        .then(response => res.status(201).json({newAction: response}))
+        .then(response => {
+            if (response.description.length > 120){
+                res.status(400).json({message: "Description must be less than 120 characters"})            
+            } else {
+                res.status(201).json({newAction: response})
+            }})
         .catch(err => next(err))
 })
 
@@ -41,8 +46,10 @@ router.delete('/:id', (req, res, next) => {
 router.put('/:id', (req, res, next) => {
     const { id } = req.params
     const changes = req.body
-    if (!changes.project_id || !changes.description || !changes.notes){
-        res.status(400).json({message: "Please provide a project Id, description, and notes"})
+    if (changes.description.length > 120){
+        res.status(400).json({message: "Description must be less than 120 characters"})      
+    } else if (!changes.project_id || !changes.notes){
+        res.status(400).json({message: "Please provide a project Id and notes"})
     } else {
         db.update(id, changes)
             .then(response => {
