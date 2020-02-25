@@ -19,7 +19,12 @@ router.get('/:id', (req, res, next) => {
 
 //Create action
 router.post('/:id/post', (req, res, next) => {
-    db.insert(req.body)
+    const newAction = {
+        ...req.body,
+        project_id: req.params.id
+    }
+
+    db.insert(newAction)
         .then(response => {
             if (response.description.length > 120){
                 res.status(400).json({message: "Description must be less than 120 characters"})            

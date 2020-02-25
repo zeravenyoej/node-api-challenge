@@ -27,7 +27,7 @@ router.get('/:id/actions', (req, res, next) => {
 })
 
 //Create a new project
-router.post('/:id/post', (req, res, next) => {
+router.post('/post', (req, res, next) => {
     db.insert(req.body)
         .then(response => res.status(201).json({newBody: response}))
         .catch(err => next(err))
